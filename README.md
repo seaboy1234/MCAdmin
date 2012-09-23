@@ -18,61 +18,62 @@ Please use the [C# Coding Standards document](http://weblogs.asp.net/lhunt/attac
 
 Property modifiers may be on the same line when used as `public string Name { get; set; }` 
 but not when used as  
-`public string Name  
-{  
-    get  
-    {  
-        return _name;  
-    }  
-    set  
-    {  
-        _name = value  
-    }  
-}`
+> public string Name  
+> {  
+>     get  
+>     {  
+>         return _name;  
+>     }  
+>     set  
+>     {  
+>         _name = value  
+>     }  
+> }
 
 Note: in abstract classes, follow this sequence for method/property placement:  
 
-`public abstract Type PropertyName { get; set; }   
-protected abstract Type PropertyName { get; set; }  
-internal abstract Type PropertyName { get; set; }  
+> public abstract Type PropertyName { get; set; }   
+> protected abstract Type PropertyName { get; set; }  
+> internal abstract Type PropertyName { get; set; }  
+> 
+> public abstract type MethodName();  
+> protected abstract type MethodName();  
+> internal abstract type MethodName(); 
+> 
+> public virtual Type PropertyName { get; set; }  
+> protected virtual Type PropertyName { get; set; }    
+> internal virtual Type PropertyName { get; set; }  
+> 
+> public type virtual MethodName()  
+> { /*...*/ }  
+> protected type virtual MethodName()  
+> { /*...*/ }  
+> internal type virtual MethodName()  
+> { /*...*/ } 
+>  
+> public Type PropertyName {get; set}  
+> protected Type PropertyName {get; set}  
+> internal Type PropertyName {get; set}  
+> private Type PropertyName {get; set}  
+> 
+> public ClassName()  
+> { /*...*/ }  
+> protected ClassName()  
+> { /*...*/ }  
+> internal ClassName()  
+> { /*...*/ }  
+> private ClassName()  
+> { /*...*/ }
+> 
+> public type MethodName()  
+> { /*...*/ }  
+> protected type MethodName()  
+> { /*...*/ }  
+> internal type MethodName()  
+> { /*...*/ }  
+> private type MethodName()  
+> { /*...*/ }  
 
-`public abstract type MethodName();  
-protected abstract type MethodName();  
-internal abstract type MethodName(); 
-
-`public virtual Type PropertyName { get; set; }  
-protected virtual Type PropertyName { get; set; }    
-internal virtual Type PropertyName { get; set; }  
-
-public type virtual MethodName()  
-{ /*...*/ }  
-protected type virtual MethodName()  
-{ /*...*/ }  
-internal type virtual MethodName()  
-{ /*...*/ } 
- 
-public Type PropertyName {get; set}  
-protected Type PropertyName {get; set}  
-internal Type PropertyName {get; set}  
-private Type PropertyName {get; set}  
-
-public ClassName()  
-{ /*...*/ }  
-protected ClassName()  
-{ /*...*/ }  
-internal ClassName()  
-{ /*...*/ }  
-private ClassName()  
-{ /*...*/ }
-
-public type MethodName()  
-{ /*...*/ }  
-protected type MethodName()  
-{ /*...*/ }  
-internal type MethodName()  
-{ /*...*/ }  
-private type MethodName()  
-{ /*...*/ }`  
 etc.
 
 ----------

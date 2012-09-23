@@ -44,19 +44,19 @@ internal abstract type MethodName();
 protected virtual Type PropertyName { get; set; }    
 internal virtual Type PropertyName { get; set; }  
 
-`public type virtual MethodName()  
+public type virtual MethodName()  
 { /*...*/ }  
 protected type virtual MethodName()  
 { /*...*/ }  
 internal type virtual MethodName()  
 { /*...*/ } 
  
-`public Type PropertyName {get; set}  
+public Type PropertyName {get; set}  
 protected Type PropertyName {get; set}  
 internal Type PropertyName {get; set}  
 private Type PropertyName {get; set}  
 
-`public ClassName()  
+public ClassName()  
 { /*...*/ }  
 protected ClassName()  
 { /*...*/ }  
@@ -65,7 +65,7 @@ internal ClassName()
 private ClassName()  
 { /*...*/ }
 
-`public type MethodName()  
+public type MethodName()  
 { /*...*/ }  
 protected type MethodName()  
 { /*...*/ }  

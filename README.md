@@ -12,6 +12,7 @@ When it is finnished, this program will allow you to use the web-interface to in
 ----------
 
 ##Developing
+**IMPORTANT NOTE: PUT THE DATA FOLDER INTO YOUR DEBUG DIRECTORY**  
 **Development** 
  
 Please use the [C# Coding Standards document](http://weblogs.asp.net/lhunt/attachment/591275.ashx "") when writing code.  

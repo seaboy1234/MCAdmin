@@ -33,7 +33,7 @@ namespace MCAdmin
             
         };
 
-        static Persistance()
+        public static Persistance()
         {
             API.Add("OnlinePlayers", ((List<string>)API["Players"]).Count());
         }

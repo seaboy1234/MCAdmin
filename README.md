@@ -34,27 +34,27 @@ Note: in abstract classes, follow this sequence for method/property placement:
 
 `public abstract Type PropertyName { get; set; }   
 protected abstract Type PropertyName { get; set; }  
-internal abstract Type PropertyName { get; set; }  `
+internal abstract Type PropertyName { get; set; }  
 
 `public abstract type MethodName();  
 protected abstract type MethodName();  
-internal abstract type MethodName(); `  
+internal abstract type MethodName(); 
 
 `public virtual Type PropertyName { get; set; }  
 protected virtual Type PropertyName { get; set; }    
-internal virtual Type PropertyName { get; set; }  `
+internal virtual Type PropertyName { get; set; }  
 
 `public type virtual MethodName()  
 { /*...*/ }  
 protected type virtual MethodName()  
 { /*...*/ }  
 internal type virtual MethodName()  
-{ /*...*/ }` 
+{ /*...*/ } 
  
 `public Type PropertyName {get; set}  
 protected Type PropertyName {get; set}  
 internal Type PropertyName {get; set}  
-private Type PropertyName {get; set}`  
+private Type PropertyName {get; set}  
 
 `public ClassName()  
 { /*...*/ }  
@@ -63,7 +63,7 @@ protected ClassName()
 internal ClassName()  
 { /*...*/ }  
 private ClassName()  
-{ /*...*/ }`
+{ /*...*/ }
 
 `public type MethodName()  
 { /*...*/ }  

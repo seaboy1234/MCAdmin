@@ -15,15 +15,11 @@
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
+
+using System;
+using System.Net;
 using HttpServer;
 using HttpServer.Routing;
-using MCAdmin.WebAccess.Pages;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Reflection;
 using MCAdmin.Extensions;
 using HttpListener = HttpServer.HttpListener;
 
@@ -31,21 +27,41 @@ namespace MCAdmin.WebAccess
 {
     internal class Webserver
     {
-        private static object _lockobj = new object();
+        private static object _lockObj = new object();
+        private static Server _webServer;
+
+        public static Server Server
+        {
+            get
+            {
+                return _webServer;
+            }
+        }
+
         public static void Start()
         {
-            Server s = new Server();
-            s.Add(HttpListener.Create(IPAddress.Any, 8080));
-            s.PrepareRequest += OnRequest;
-            s.Add(new StaticResourceHandler());
-            s.Add(new PageHandler());
-            s.Add(new SimpleRouter("/", "index.htm"));
-            s.Start(0);
+            if (_webServer != null)
+            {
+                _webServer.Start(0);
+                return;
+            }
+            _webServer = new Server();
+            _webServer.Add(HttpListener.Create(IPAddress.Any, 8080));
+            _webServer.PrepareRequest += OnRequest;
+            _webServer.Add(new StaticResourceHandler());
+            _webServer.Add(new PageHandler());
+            _webServer.Add(new SimpleRouter("/", "index.htm"));
+            _webServer.Start(0);
+        }
+        public static void Stop()
+        {
+            _webServer.Stop(false);
         }
 
         private static void OnRequest(object sender, RequestEventArgs e)
         {
-            lock (_lockobj)
+#if DEBUG
+            lock (_lockObj)
             {
                 Console.WriteLine(("Begin Request").Wrap("-", Console.WindowWidth));
                 Console.WriteLine(String.Format("Request from {0}", e.Context.RemoteEndPoint.Address.ToString()));
@@ -59,6 +75,7 @@ namespace MCAdmin.WebAccess
                 }
                 Console.WriteLine(("End Request").Wrap("-", Console.WindowWidth));
             }
+#endif
         }
     }
 }

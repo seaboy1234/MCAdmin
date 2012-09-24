@@ -64,14 +64,14 @@ namespace MCAdmin.WebAccess
             lock (_lockObj)
             {
                 Console.WriteLine(("Begin Request").Wrap("-", Console.WindowWidth));
-                Console.WriteLine(String.Format("Request from {0}", e.Context.RemoteEndPoint.Address.ToString()));
+                Console.WriteLine(string.Format("Request from {0}", e.Context.RemoteEndPoint.Address.ToString()));
                 if (e.Response.Status == HttpStatusCode.OK)
                 {
-                    Console.WriteLine(String.Format("The request for {0} was successful", e.Request.Uri.ToString()));
+                    Console.WriteLine(string.Format("The request for {0} was successful", e.Request.Uri.ToString()));
                 }
                 else
                 {
-                    Console.WriteLine(String.Format("The request for {0} failed", e.Request.Uri.ToString()));
+                    Console.WriteLine(string.Format("The request for {0} failed", e.Request.Uri.ToString()));
                 }
                 Console.WriteLine(("End Request").Wrap("-", Console.WindowWidth));
             }

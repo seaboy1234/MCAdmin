@@ -27,21 +27,27 @@ namespace MCAdmin
 {
     internal static class Program
     {
-        private static ProcessStartInfo procStartInfo = new ProcessStartInfo("java", "-Xmx1024M -Xms1024M -jar minecraft_server.jar nogui");
+        public delegate void SingleObjectEvent<T>(T obj);
+        public static event SingleObjectEvent<string> MinecraftServerMessageRaised;
+
+        private static ProcessStartInfo procStartInfo = new ProcessStartInfo("java", "-jar server.jar nogui");
         private static Process proc = new Process();
-        private static bool fileDownloaded = File.Exists("minecraft_server.jar");
+        private static bool fileDownloaded = File.Exists("server.jar");
+        private static object lockObj = new object();
 
         private static void Main(string[] args)
         {
+            Console.WindowWidth = 100;
+            Console.WindowHeight = 40;
             try
             {
-                if (!File.Exists("minecraft_server.jar"))
+                if (!File.Exists("server.jar"))
                 {
                     WebClient cl = new WebClient();
                     cl.DownloadProgressChanged += cl_DownloadProgressChanged;
                     cl.DownloadFileCompleted += cl_DownloadFileCompleted;
-                    cl.DownloadFileAsync(new Uri("https://s3.amazonaws.com/MinecraftDownload/launcher/minecraft_server.jar"), "minecraft_server.jar");
-                    
+                    cl.DownloadFileAsync(new Uri("https://s3.amazonaws.com/MinecraftDownload/launcher/minecraft_server.jar"), "server.jar");
+                    while (!fileDownloaded) Thread.Sleep(100);
                 }
             }
             catch(Exception e)
@@ -59,15 +65,12 @@ namespace MCAdmin
                 // Do not create the black window.
                 procStartInfo.CreateNoWindow = false;
                 proc.StartInfo = procStartInfo;
-                procStartInfo.WorkingDirectory = Environment.CurrentDirectory + "Minecraft";
+                proc.ErrorDataReceived += proc_DataReceived;
+                proc.OutputDataReceived += proc_DataReceived;
                 proc.Start();
                 Webserver.Start();
                 new Thread(HandleCommand).Start();
-                while (!proc.StandardOutput.EndOfStream)
-                {
-                    Console.WriteLine(proc.StandardOutput.ReadLine());
-                    //Thread.Sleep(1000);
-                }
+                while (!proc.HasExited) ;
             }
             catch (Exception e)
             {
@@ -77,15 +80,32 @@ namespace MCAdmin
             Console.ReadKey();
         }
 
+        private static void proc_DataReceived(object sender, DataReceivedEventArgs e)
+        {
+            Console.WriteLine(e.Data);
+            if (MinecraftServerMessageRaised != null)
+            {
+                MinecraftServerMessageRaised.Invoke(e.Data);
+            }
+        }
+
         private static void cl_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
-            
+            Thread.Sleep(3000);
+            fileDownloaded = true;
+            Console.Clear();
         }
 
         private static void cl_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
-            Console.Clear();
-            Console.WriteLine(("Download Progress").Wrap("-", Console.WindowWidth));
+            lock (lockObj)
+            {
+                Console.Clear();
+                Console.WriteLine(("Download Progress").Wrap("-", Console.WindowWidth));
+                Console.WriteLine(("=").Repeat(e.ProgressPercentage - 1) + ">");
+                Console.WriteLine("{0}%", e.ProgressPercentage);
+                Console.WriteLine(("-").Repeat(Console.WindowWidth));
+            }
         }
         private static void HandleCommand()
         {

@@ -46,11 +46,11 @@ Note: in abstract classes, follow this sequence for method/property placement:
 > internal virtual Type PropertyName { get; set; }  
 > 
 > public type virtual MethodName()  
-> { /*...*/ }  
+> { /\*...\*/ }  
 > protected type virtual MethodName()  
-> { /*...*/ }  
+> { /\*...\*/ }  
 > internal type virtual MethodName()  
-> { /*...*/ } 
+> { /\*...\*/ } 
 >  
 > public Type PropertyName {get; set}  
 > protected Type PropertyName {get; set}  
@@ -58,22 +58,22 @@ Note: in abstract classes, follow this sequence for method/property placement:
 > private Type PropertyName {get; set}  
 > 
 > public ClassName()  
-> { /*...*/ }  
+> { /\*...\*/ }  
 > protected ClassName()  
-> { /*...*/ }  
+> { /\*...\*/ }  
 > internal ClassName()  
-> { /*...*/ }  
+> { /\*...\*/ }  
 > private ClassName()  
-> { /*...*/ }
+> { /\*...\*/ }
 > 
 > public type MethodName()  
-> { /*...*/ }  
+> { /\*...\*/ }  
 > protected type MethodName()  
-> { /*...*/ }  
+> { /\*...\*/ }  
 > internal type MethodName()  
-> { /*...*/ }  
+> { /\*...\*/ }  
 > private type MethodName()  
-> { /*...*/ }  
+> { /\*...\*/ }  
 
 etc.
 

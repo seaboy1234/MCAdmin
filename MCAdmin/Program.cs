@@ -21,11 +21,12 @@ using System.IO;
 using System.Net;
 using System.Threading;
 using MCAdmin.Extensions;
+using MCAdmin.Utility;
 using MCAdmin.WebAccess;
 
 namespace MCAdmin
 {
-    internal static class Program
+    public static class Program
     {
         public delegate void SingleObjectEvent<T>(T obj);
         public static event SingleObjectEvent<string> MinecraftServerMessageRaised;

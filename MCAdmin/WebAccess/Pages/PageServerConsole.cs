@@ -20,9 +20,17 @@ namespace MCAdmin.WebAccess.Pages
 {
     internal class PageServerConsole : Page
     {
+        public PageServerConsole()
+        {
+            PageName = "Server Console";
+        }
+
         public override string Path
         {
-            get { return "Server Console"; }
+            get
+            {
+                return "console.htm";
+            }
         }
 
         protected override string Render()

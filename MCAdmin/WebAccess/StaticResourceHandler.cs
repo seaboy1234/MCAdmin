@@ -38,6 +38,8 @@ namespace MCAdmin.WebAccess
                 return ProcessingResult.Continue;
             }
             resource = File.ReadAllBytes("Data/static/" + uri);
+            response.Add(new StringHeader("Cache-Control", "max-age=28800"));
+            response.Add(new StringHeader("X-Content-Class", "Static"));
             response.Body.Write(resource, 0, resource.Length);
             response.ContentType = new ContentTypeHeader(MIMEAssistant.GetMIMEType("Data/static/" + uri));
             return ProcessingResult.SendResponse;

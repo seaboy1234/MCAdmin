@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<!--
+	Arcana 1.0 by HTML5 Up!
+	html5up.net | @nodethirtythree
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+        {section:Header}
+		<!-- Main -->
+
+			<div id="main-wrapper" class="subpage">
+				<div class="5grid-layout">
+					<div class="row">
+						<div class="3u">
+						
+							<!-- Sidebar 1 -->
+							
+								<section>
+									<h3>Server Settings</h3>
+									<ul class="link-list">
+										{settings_nav}
+									</ul>
+								</section>						
+						</div>
+						<div class="6u mobileUI-main-content">
+					
+							<!-- Content -->
+
+								<article class="first">
+                                    <table>
+                                        <tr>
+                                            <td><strong>Server Name: </strong></td>
+                                            <td>{persistance:ServerName}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>MOTD: </strong></td>
+                                            <td>{persistance:Motd}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Online Players / Max Players: </strong></td>
+                                            <td>{persistance:OnlinePlayers}/{persistance:MaxPlayers}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Players: </strong></td>
+                                            <td>{persistance:Players}</td>
+                                        </tr>
+                                    </table>
+                                    <p>Settings Manager</p>
+                                    <form action='process.htm' method='POST'>
+                                    <table>
+                                        <tr>
+                                            <td>Key:</td> 
+                                            <td><input type='text' name='var' /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Value:</td>
+                                            <td><input type='text' name='value' /></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td><input type='submit' value='Submit' /></td>
+                                        </tr>
+                                        <input type='hidden' name='page' value='settings.htm' />
+                                    </table>
+                                    </form>
+								</article>							
+
+						</div>
+						<div class="3u">
+						
+							<!-- Sidebar 2 -->
+							
+								<section>
+									<h3></h3>
+									<p>
+										 							
+									</p>
+									<ul class="link-list">
+										
+									</ul>
+								</section>
+
+								<section class="last">
+									<h3></h3>
+									<ul class="link-list">
+										
+									</ul>
+								</section>
+						
+						</div>
+					</div>
+				</div>
+			</div>
+            {section:Footer}
+	</body>
+</html>

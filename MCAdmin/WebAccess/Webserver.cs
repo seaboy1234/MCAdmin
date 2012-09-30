@@ -21,6 +21,7 @@ using System.Net;
 using HttpServer;
 using HttpServer.Routing;
 using MCAdmin.Extensions;
+using MCAdmin.WebAccess.Sessions;
 using HttpListener = HttpServer.HttpListener;
 
 namespace MCAdmin.WebAccess
@@ -51,6 +52,7 @@ namespace MCAdmin.WebAccess
             _webServer.Add(new StaticResourceHandler());
             _webServer.Add(new PageHandler());
             _webServer.Add(new SimpleRouter("/", "index.htm"));
+            UserSession.Init(_webServer, true);
             _webServer.Start(0);
         }
         public static void Stop()

@@ -22,6 +22,7 @@ using System.Linq;
 using System.Reflection;
 using HttpServer;
 using MCAdmin.WebAccess.Pages.Template;
+using MCAdmin.WebAccess.Sessions;
 
 namespace MCAdmin.WebAccess.Pages
 {
@@ -71,6 +72,10 @@ namespace MCAdmin.WebAccess.Pages
                 {
                     Scripting.ApplyTag("persistance:" + v.Key, v.Value.ToString(), ref page);
                 }
+                //User tags.
+                Scripting.ApplyTag("user:Id", UserSession.CurrentSession.UserId.ToString(), ref page);
+                Scripting.ApplyTag("user:Name", UserSession.CurrentSession.Username, ref page);
+                Scripting.ApplyTag("session:Id", UserSession.CurrentSession.SessionId.ToString(), ref page);
                 //Then the nav.
                 Scripting.ApplyTag("nav", ApplyNav(), ref page);
                 //End
@@ -89,6 +94,10 @@ namespace MCAdmin.WebAccess.Pages
             string nav = "";
             foreach (Page p in PageHandler.Pages)
             {
+                if (p.PageName != "")
+                {
+
+                }
                 nav += t.ApplyTemplate(p, p.PageName);
             }
             return nav;

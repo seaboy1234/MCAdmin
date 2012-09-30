@@ -21,6 +21,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using HttpServer;
+using HttpServer.Headers;
 using HttpServer.Modules;
 using MCAdmin.WebAccess.Pages;
 
@@ -82,6 +83,7 @@ namespace MCAdmin.WebAccess
             {
                 sw.Write(page.RenderPage(context));
             }
+            response.Add(new StringHeader("X-Content-Class", "Dynamic"));
             return ProcessingResult.SendResponse;
         }
     }
